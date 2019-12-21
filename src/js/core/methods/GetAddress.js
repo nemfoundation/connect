@@ -56,7 +56,7 @@ export default class GetAddress extends AbstractMethod {
                 { name: 'scriptType', type: 'string' },
             ]);
 
-            const path: Array<number> = validatePath(batch.path, 3);
+            const path: Array<number> = validatePath(batch.path, 1);
             let coinInfo: ?BitcoinNetworkInfo;
             if (batch.coin) {
                 coinInfo = getBitcoinNetwork(batch.coin);
