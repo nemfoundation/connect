@@ -218,14 +218,33 @@ export default class DeviceCommands {
         return state;
     }
 
-    async getAddress(address_n: Array<number>, coinInfo: BitcoinNetworkInfo, showOnTrezor: boolean, multisig?: trezor.MultisigRedeemScriptType, scriptType?: trezor.InputScriptType): Promise<trezor.Address> {
-        if (!scriptType) { scriptType = getScriptType(address_n); }
+    async getAddress(
+        address_n: Array<number>,
+        coinInfo: BitcoinNetworkInfo,
+        showOnTrezor: boolean,
+        multisig?: trezor.MultisigRedeemScriptType,
+        scriptType?: trezor.InputScriptType,
+    ): Promise<trezor.Address> {
+        if (!scriptType) {
+            scriptType = getScriptType(address_n);
+            if (scriptType === 'SPENDMULTISIG' && !multisig) {
+                scriptType = 'SPENDADDRESS';
+            }
+        }
+        if (multisig && multisig.pubkeys) {
+            // convert xpub strings to HDNodeTypes
+            multisig.pubkeys.forEach(pk => {
+                if (typeof pk.node === 'string') {
+                    pk.node = hdnodeUtils.xpubToHDNodeType(pk.node, coinInfo.network);
+                }
+            });
+        }
         const response: Object = await this.typedCall('GetAddress', 'Address', {
             address_n,
             coin_name: coinInfo.name,
             show_display: !!showOnTrezor,
             multisig,
-            script_type: scriptType && scriptType !== 'SPENDMULTISIG' ? scriptType : 'SPENDADDRESS', // script_type 'SPENDMULTISIG' throws Failure_FirmwareError
+            script_type: scriptType || 'SPENDADDRESS',
         });
 
         return {
