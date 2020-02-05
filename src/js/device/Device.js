@@ -56,6 +56,7 @@ const parseFeatures = (features: Features): Features => {
             'Feature_Lisk',
             'Feature_Monero',
             'Feature_NEM',
+            'Feature_NEM2',
             'Feature_Ripple',
             'Feature_Stellar',
             'Feature_Tezos',

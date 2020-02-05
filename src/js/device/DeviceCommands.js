@@ -353,6 +353,33 @@ export default class DeviceCommands {
         return response.message;
     }
 
+    async nem2SignTx(transaction: trezor.NEM2SignTxMessage): Promise<trezor.NEM2SignedTx | trezor.NEM2CosignatureSignedTx> {
+        if (transaction.cosigning) {
+            const response: MessageResponse<trezor.NEM2CosignatureSignedTx> = await this.typedCall('NEM2SignTx', 'NEM2CosignatureSignedTx', transaction);
+            return response.message;
+        }
+        const response: MessageResponse<trezor.NEM2SignedTx> = await this.typedCall('NEM2SignTx', 'NEM2SignedTx', transaction);
+        return response.message;
+    }
+
+    async nem2GetPublicKey(address_n: Array<number>, showOnTrezor: boolean): Promise<trezor.NEM2PublicKey> {
+        const response: MessageResponse<trezor.NEM2PublicKey> = await this.typedCall('NEM2GetPublicKey', 'NEM2PublicKey', {
+            address_n,
+            show_display: !!showOnTrezor,
+        });
+        return response.message;
+    }
+
+    async nem2EncryptMessage(messageData: trezor.NEM2EncryptMessage): Promise<trezor.NEM2EncryptedMessage> {
+        const response: MessageResponse<trezor.NEM2EncryptedMessage> = await this.typedCall('NEM2EncryptMessage', 'NEM2EncryptedMessage', messageData);
+        return response.message;
+    }
+
+    async nem2DecryptMessage(messageData: trezor.NEM2DecryptMessage): Promise<trezor.NEM2DecryptedMessage> {
+        const response: MessageResponse<trezor.NEM2DecryptedMessage> = await this.typedCall('NEM2DecryptMessage', 'NEM2DecryptedMessage', messageData);
+        return response.message;
+    }
+
     // Ripple: begin
     async rippleGetAddress(address_n: Array<number>, showOnTrezor: boolean): Promise<trezor.RippleAddress> {
         const response: MessageResponse<trezor.RippleAddress> = await this.typedCall('RippleGetAddress', 'RippleAddress', {

@@ -38,6 +38,10 @@ Every method require an [`Object`](https://developer.mozilla.org/en-US/docs/Web/
 * [TrezorConnect.nemGetAddress](methods/nemGetAddress.md)
 * [TrezorConnect.nemSignTransaction](methods/nemSignTransaction.md)
 
+### NEM2
+* [TrezorConnect.nem2GetPublicKey](methods/nem2GetPublicKey.md)
+* [TrezorConnect.nem2SignTransaction](methods/nem2SignTransaction.md)
+
 ### Stellar
 * [TrezorConnect.stellarGetAddress](methods/stellarGetAddress.md)
 * [TrezorConnect.stellarSignTransaction](methods/stellarSignTransaction.md)

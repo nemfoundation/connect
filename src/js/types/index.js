@@ -178,6 +178,7 @@ import * as CARDANO from './cardano';
 import * as RIPPLE from './ripple';
 import * as ETHEREUM from './ethereum';
 import * as NEM from './nem';
+import * as NEM2 from './nem2';
 import * as STELLAR from './stellar';
 import * as LISK from './lisk';
 import * as TEZOS from './tezos';
@@ -270,6 +271,14 @@ declare function F_NEMGetAddress(params: (P.$Common & { bundle: Array<NEM.$NEMGe
 export type NEMGetAddress = typeof F_NEMGetAddress;
 
 export type NEMSignTransaction = (NEM.$NEMSignTransaction) => Promise<NEM.NEMSignTransaction$>;
+
+export type NEM2SignTransaction = (NEM2.$NEM2SignTransaction) => Promise<NEM2.NEM2SignedTransaction>;
+
+export type NEM2GetPublicKey = (NEM2.$NEM2GetPublicKey) => Promise<NEM2.NEM2GetPublicKeyResponse>;
+
+export type NEM2EncryptMessage = (NEM2.$NEM2EncryptMessage) => Promise<NEM2.NEM2EncryptedMessage>;
+
+export type NEM2DecryptMessage = (NEM2.$NEM2DecryptMessage) => Promise<NEM2.NEM2DecryptedMessage>;
 
 export type PushTransaction = (P.$PushTransaction) => Promise<R.PushTransaction$>;
 
