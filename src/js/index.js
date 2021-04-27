@@ -131,6 +131,8 @@ const TrezorConnect: API = {
 
     nemSignTransaction: params => call({ method: 'nemSignTransaction', ...params }),
 
+    symbolGetPublicKey: params => call({ method: 'symbolGetPublicKey', ...params }),
+
     pushTransaction: params => call({ method: 'pushTransaction', ...params }),
 
     rippleGetAddress: params => {

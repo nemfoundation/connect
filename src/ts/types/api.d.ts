@@ -13,6 +13,7 @@ import * as EOS from './networks/eos';
 import * as Ethereum from './networks/ethereum';
 import * as Lisk from './networks/lisk';
 import * as NEM from './networks/nem';
+import * as Symbol from './networks/symbol';
 import * as Ripple from './networks/ripple';
 import * as Stellar from './networks/stellar';
 import * as Tezos from './networks/tezos';
@@ -255,6 +256,14 @@ export namespace TrezorConnect {
     function nemGetAddress(params: P.CommonParams & NEM.NEMGetAddress): P.Response<NEM.NEMAddress>;
     function nemGetAddress(params: P.CommonParams & P.Bundle<NEM.NEMGetAddress>): P.BundledResponse<NEM.NEMAddress>;
     function nemSignTransaction(params: P.CommonParams & NEM.NEMSignTransaction): P.Response<Protobuf.NEMSignedTx>;
+
+    // Symbol
+    function symbolGetPublicKey(
+        params: P.CommonParams & Symbol.SymbolGetPublicKey,
+    ): P.Response<Symbol.SymbolPublicKey>;
+    function symbolGetPublicKey(
+        params: P.CommonParams & P.Bundle<Symbol.SymbolGetPublicKey>,
+    ): P.BundledResponse<Symbol.SymbolPublicKey>;
 
     // Ripple
     function rippleGetAddress(params: P.CommonParams & Ripple.RippleGetAddress): P.Response<Ripple.RippleAddress>;
